@@ -1,0 +1,284 @@
+# ============================================================================
+# monitor_app — .gitignore
+# 
+# Comprehensive ignore patterns for GPL-3.0 public distribution.
+# Excludes: heavy logs, build artifacts, environment files, and OS cruft.
+# 
+# Last updated: 2026-04-16
+# ============================================================================
+
+# ============================================================================
+# Python & Virtual Environments
+# ============================================================================
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.env
+.env.local
+
+# Installation / build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+MANIFEST
+.installed.cfg
+develop-eggs/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+
+# ============================================================================
+# Monitoring & Benchmark Data (Heavy Logs — DO NOT COMMIT)
+# ============================================================================
+
+# Per-run monitoring logs (NDJSON, raw hardware metrics)
+logs/
+*_energy_metrics.csv
+*_layer_profile.csv
+*.events.ndjson
+*.ndjson
+*.jsonl
+
+# Benchmark results
+results/
+benchmark_results/
+analysis_output/
+
+# Temporary analysis files
+tmp/
+temp/
+*.tmp
+
+# ============================================================================
+# Datasets & Models (Heavy Binary Files — DO NOT COMMIT)
+# ============================================================================
+
+# Data files — se ignora el contenido salvo los ficheros de referencia del
+# framework (factores de emisión y documentación), necesarios en ejecución.
+data/*
+datasets/
+!data/.gitkeep
+!data/README.md
+!data/2025_Country_Carbon_Emissions.csv
+
+# Dataset maestro del benchmark (5.2 MB, resultado local de las ejecuciones)
+benchmark_master_dataset.json
+
+# Downloaded model weights & checkpoints
+weights/
+checkpoints/
+*.pth
+*.pt
+*.h5
+*.hdf5
+*.onnx
+*.pb
+*.ckpt
+*.safetensors
+*.pkl
+*.pickle
+
+# Example model artifacts
+models_examples/**/checkpoint/
+models_examples/**/*.pth
+models_examples/**/*.pt
+
+# Datasets descargados dentro de cualquier subproyecto (CIFAR-10, etc.)
+**/data/cifar-10-batches-py/
+**/data/*.tar.gz
+models_examples/**/data/
+
+# Image files (unless documentation)
+*.jpg
+*.png
+*.jpeg
+!docs/images/*.png
+!assets/*.png
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+
+# ============================================================================
+# Development & Testing
+# ============================================================================
+
+# pytest
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage_html/
+.tox/
+.hypothesis/
+
+# mypy & type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ruff & linting
+.ruff_cache/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+.jupyter/
+
+# Test outputs
+test_results/
+test_output/
+.nox/
+
+# ============================================================================
+# IDE & Editor Files
+# ============================================================================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+.vim/
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# JetBrains (PyCharm, IntelliJ)
+.idea/
+*.iml
+*.iws
+
+# ============================================================================
+# Documentation & Builds
+# ============================================================================
+
+# MkDocs
+site/
+docs_build/
+
+# Sphinx
+docs/_build/
+docs/.buildinfo
+
+# Generated LaTeX PDFs (keep .tex source)
+Plantilla_TFM/Documento_maestro.pdf
+Plantilla_TFM/figuras/*.pdf
+!Plantilla_TFM/figuras/.gitkeep
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.out
+*.toc
+*.lof
+*.lot
+# biblatex/biber
+*.bcf
+*.run.xml
+# glossaries
+*.glg
+*.glo
+*.gls
+*.ist
+
+# ============================================================================
+# OS & System Files
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Icon?
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.Trash-*
+.directory
+
+# ============================================================================
+# CI/CD
+# ============================================================================
+
+# GitHub Actions
+.github/workflows/*.log
+
+# Local CI
+.gitlab-ci.yml.bak
+
+# ============================================================================
+# Temporary/Generated Files
+# ============================================================================
+
+*.log
+*.out
+*.err
+*.orig
+*.bak
+*.backup
+
+# ============================================================================
+# Optional: Preserve empty directories
+# ============================================================================
+
+!logs/.gitkeep
+!results/.gitkeep
+!data/.gitkeep
+!docs/images/.gitkeep
+!Plantilla_TFM/figuras/.gitkeep
+
+# Codegraph
+.codegraph/
+
+# Herramientas de asistencia local (no forman parte del proyecto)
+.claude/
+CLAUDE.md
+.serena/
+
+# Internal working notes (not for distribution)
+Work_remaining.md
+
+# Timestamped backups of previous logs/results
+logs_backup_*/
+results_backup_*/

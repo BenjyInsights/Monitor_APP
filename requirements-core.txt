@@ -1,0 +1,11 @@
+# Core dependencies for monitor_app
+# Python >= 3.11
+
+numpy>=2.0,<3.0
+pandas>=2.0,<3.0
+psutil>=7.0,<8.0
+matplotlib>=3.8,<4.0
+seaborn>=0.12,<1.0
+py-cpuinfo>=9.0,<10.0
+nvidia-ml-py>=12.0
+rich>=13.0,<15.0

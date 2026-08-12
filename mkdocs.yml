@@ -1,0 +1,118 @@
+site_name: monitor_app
+site_description: High-fidelity energy monitoring framework for Python & PyTorch
+site_author: Benjamín Sánchez Calza
+site_url: https://github.com/yourusername/monitor_app
+
+repo_name: monitor_app
+repo_url: https://github.com/yourusername/monitor_app
+copyright: 'Copyright &copy; 2026 Benjamín Sánchez Calza. Licensed under GPL-3.0.'
+
+theme:
+  name: material
+  logo: images/logo.png
+  favicon: images/favicon.png
+  palette:
+    - scheme: default
+      primary: teal
+      accent: lime
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: lime
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          import_statement: true
+          show_source: true
+          docstring_style: google
+          show_docstring_examples: true
+          show_if_no_docstring: false
+          line_by_line: false
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quickstart.md
+    - Reproducibility Guide: getting-started/reproducibility.md
+  - User Guide:
+    - Overview: user-guide/overview.md
+    - Basic Usage: user-guide/basic-usage.md
+    - Advanced Monitoring: user-guide/advanced.md
+    - Energy Early Stopping: user-guide/energy-early-stopping.md
+    - GPU Power Optimization: user-guide/gpu-optimization.md
+  - Concepts:
+    - Energy Grading: concepts/energy-grading.md
+    - Pareto Frontier: concepts/pareto-frontier.md
+    - Carbon Emissions: concepts/carbon-emissions.md
+    - Intensity Factor: concepts/intensity-factor.md
+  - API Reference:
+    - monitor_app: api/monitor_app.md
+    - Core Classes: api/core.md
+    - Metrics: api/metrics.md
+    - Utilities: api/utils.md
+  - Examples:
+    - Training Monitor: examples/training.md
+    - Batch Inference: examples/batch-inference.md
+    - Multi-GPU Setup: examples/multi-gpu.md
+  - Contributing: CONTRIBUTING.md
+  - FAQ: faq.md
+  - License: LICENSE.md
+
+# Math support (optional, if using KaTeX)
+markdown_extensions:
+  - extra
+  - admonition
+  - codehilite
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - tables
+  - toc:
+      permalink: true
+
+# Extra JS for formulas
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js
+  - js/katex.js
+
+extra_css:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css
