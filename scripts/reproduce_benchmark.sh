@@ -3,7 +3,7 @@
 ################################################################################
 # reproduce_benchmark.sh
 #
-# Reproducibility script for the monitor_app v1.0.0 energy benchmark
+# Reproducibility script for the moniaenergy v1.0.0 energy benchmark
 # 
 # Executes energy-efficient model training benchmarks on CIFAR-10 with
 # automatic monitoring, Green AI grading, and Pareto frontier analysis.
@@ -16,7 +16,7 @@
 # Requirements:
 #   - Python 3.11+
 #   - NVIDIA GPU (validate with nvidia-smi)
-#   - monitor_app installed: pip install -e .
+#   - moniaenergy installed: pip install -e .
 #
 # Author: Benjamín Sánchez Calza
 # License: GPL-3.0
@@ -56,7 +56,7 @@ TIMEOUT=3600  # 1 hour per config
 print_banner() {
     echo ""
     echo "════════════════════════════════════════════════════════════════════════════"
-    echo "  monitor_app — Benchmark Reproducibility Script v1.0"
+    echo "  moniaenergy — Benchmark Reproducibility Script v1.0"
     echo "════════════════════════════════════════════════════════════════════════════"
     echo ""
 }
@@ -98,12 +98,12 @@ check_requirements() {
     fi
     print_success "CUDA available: $($PYTHON_CMD -c 'import torch; print(torch.cuda.get_device_name(0))')"
     
-    # Check monitor_app installation
-    if ! $PYTHON_CMD -c "from monitor_app import monitor_train" 2>/dev/null; then
-        print_error "monitor_app not installed. Run: pip install -e ."
+    # Check moniaenergy installation
+    if ! $PYTHON_CMD -c "from moniaenergy import monitor_train" 2>/dev/null; then
+        print_error "moniaenergy not installed. Run: pip install -e ."
         return 1
     fi
-    print_success "monitor_app installed"
+    print_success "moniaenergy installed"
     
     # Check directories
     mkdir -p "${DATA_DIR}" "${LOGS_DIR}" "${RESULTS_DIR}"
@@ -151,7 +151,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, models, transforms
-from monitor_app import monitor_train
+from moniaenergy import monitor_train
 import sys
 
 # Data loading
@@ -300,7 +300,7 @@ show_summary() {
     print_section "Reproducibility Checklist"
     
     cat << 'EOF'
-✓ Requirements validated (Python 3.11+, CUDA, monitor_app)
+✓ Requirements validated (Python 3.11+, CUDA, moniaenergy)
 ✓ CIFAR-10 dataset prepared
 ✓ Benchmark(s) executed with energy monitoring
 ✓ Energy metrics logged (NDJSON format)

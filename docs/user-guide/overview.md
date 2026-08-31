@@ -1,6 +1,6 @@
 # User Guide Overview
 
-Welcome to the detailed user guide for **monitor_app**! This guide is designed to help you understand how to integrate, configure, and get the most out of the framework to measure and optimize the energy consumption of your machine learning models.
+Welcome to the detailed user guide for **monIAenergy**! This guide is designed to help you understand how to integrate, configure, and get the most out of the framework to measure and optimize the energy consumption of your machine learning models.
 
 ## Framework Architecture
 
@@ -26,14 +26,14 @@ graph TD
 
 ## Key Modules
 
-`monitor_app` includes the following core modules:
+`moniaenergy` includes the following core modules:
 
-1. **Hardware Telemetry (`monitor_app.metrics`)**: Direct interface with Intel RAPL (CPU) and NVIDIA NVML (GPU) to read instantaneous power (W) and accumulated energy (J) without estimation.
-2. **PyTorch Callbacks (`monitor_app.monitor.pytorch_hooks`)**: Tracks training/validation epochs and logs metadata automatically.
-3. **Green AI Grading (`monitor_app.metrics.green_grader`)**: Universal grading system (A++ to F) that normalizes efficiency relative to historic benchmarks.
-4. **Optimization Advisor (`monitor_app.monitor.optimizer_advisor`)**: Analyzes hardware bottlenecks (such as high memory-bound states) and outputs recommended configurations.
-5. **GPU Power Optimizer (`monitor_app.monitor.gpu_power_optimizer`)**: Dynamic JIT power limiter that explores the Pareto frontier.
-6. **Energy Early Stopping (`monitor_app.monitor.pytorch_hooks.EnergyEarlyStopping`)**: Halts training if the ratio of accuracy improvement to energy consumption drops below the threshold.
+1. **Hardware Telemetry (`moniaenergy.metrics`)**: Direct interface with Intel RAPL (CPU) and NVIDIA NVML (GPU) to read instantaneous power (W) and accumulated energy (J) without estimation.
+2. **PyTorch Callbacks (`moniaenergy.monitor.pytorch_hooks`)**: Tracks training/validation epochs and logs metadata automatically.
+3. **Green AI Grading (`moniaenergy.metrics.green_grader`)**: Universal grading system (A++ to F) that normalizes efficiency relative to historic benchmarks.
+4. **Optimization Advisor (`moniaenergy.monitor.optimizer_advisor`)**: Analyzes hardware bottlenecks (such as high memory-bound states) and outputs recommended configurations.
+5. **GPU Power Optimizer (`moniaenergy.monitor.gpu_power_optimizer`)**: Dynamic JIT power limiter that explores the Pareto frontier.
+6. **Energy Early Stopping (`moniaenergy.monitor.pytorch_hooks.EnergyEarlyStopping`)**: Halts training if the ratio of accuracy improvement to energy consumption drops below the threshold.
 
 ## Workflow
 

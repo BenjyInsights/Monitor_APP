@@ -5,7 +5,7 @@ Get your first energy monitoring run in 5 minutes.
 ## Minimal Example
 
 ```python
-from monitor_app import monitor_train
+from monIAenergy import monitor_train
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
@@ -109,7 +109,7 @@ Returns: `bool` — `True` if training should stop (EES triggered), `False` othe
 
 ## Output Files
 
-After each run, monitor_app generates:
+After each run, moniaenergy generates:
 
 ```
 logs/first_run/
@@ -138,4 +138,4 @@ print(df[['timestamp', 'epoch', 'gpu_power_w', 'energy_j', 'carbon_g']])
 
 ---
 
-**Docs:** [monitor_app Documentation](../index.md)
+**Docs:** [moniaenergy Documentation](../index.md)

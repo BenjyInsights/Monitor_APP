@@ -27,7 +27,7 @@ import unittest
 from unittest.mock import patch, MagicMock, mock_open
 import json
 
-from monitor_app.utils.carbon_emissions import CarbonEmissions
+from moniaenergy.utils.carbon_emissions import CarbonEmissions
 
 
 class TestCarbonEmissionsCSV(unittest.TestCase):
@@ -104,7 +104,7 @@ class TestCarbonEmissionsExternalAPI(unittest.TestCase):
         CarbonEmissions._external_api_enabled = False
         CarbonEmissions._api_key = "test-key"
 
-    @patch("monitor_app.utils.carbon_emissions.urllib.request.urlopen")
+    @patch("moniaenergy.utils.carbon_emissions.urllib.request.urlopen")
     def test_query_electricity_maps_api_success(self, mock_urlopen: MagicMock) -> None:
         """Test successful API query."""
         mock_response = MagicMock()
@@ -121,7 +121,7 @@ class TestCarbonEmissionsExternalAPI(unittest.TestCase):
         # Verify caching
         self.assertIn("es", CarbonEmissions._api_cache)
 
-    @patch("monitor_app.utils.carbon_emissions.urllib.request.urlopen")
+    @patch("moniaenergy.utils.carbon_emissions.urllib.request.urlopen")
     def test_query_electricity_maps_api_caching(
         self, mock_urlopen: MagicMock
     ) -> None:
@@ -145,7 +145,7 @@ class TestCarbonEmissionsExternalAPI(unittest.TestCase):
         # urlopen should only be called once (cached on second call)
         self.assertEqual(mock_urlopen.call_count, 1)
 
-    @patch("monitor_app.utils.carbon_emissions.urllib.request.urlopen")
+    @patch("moniaenergy.utils.carbon_emissions.urllib.request.urlopen")
     def test_query_electricity_maps_api_disabled(
         self, mock_urlopen: MagicMock
     ) -> None:
@@ -157,7 +157,7 @@ class TestCarbonEmissionsExternalAPI(unittest.TestCase):
         self.assertIsNone(factor)
         mock_urlopen.assert_not_called()
 
-    @patch("monitor_app.utils.carbon_emissions.urllib.request.urlopen")
+    @patch("moniaenergy.utils.carbon_emissions.urllib.request.urlopen")
     def test_query_electricity_maps_api_http_error_404(
         self, mock_urlopen: MagicMock
     ) -> None:
@@ -176,7 +176,7 @@ class TestCarbonEmissionsExternalAPI(unittest.TestCase):
         self.assertIn("xx", CarbonEmissions._api_cache)
         self.assertIsNone(CarbonEmissions._api_cache["xx"])
 
-    @patch("monitor_app.utils.carbon_emissions.urllib.request.urlopen")
+    @patch("moniaenergy.utils.carbon_emissions.urllib.request.urlopen")
     def test_get_country_factor_with_api_fallback_to_csv(
         self, mock_urlopen: MagicMock
     ) -> None:

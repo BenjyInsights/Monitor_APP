@@ -2,7 +2,7 @@
 
 When measuring energy efficiency in machine learning, comparing total energy (in Joules or Wh) across different runs is often misleading if the runs processed a different number of training samples or ran for a different number of epochs.
 
-To resolve this, `monitor_app` defines the **Intensity Factor** as the average energy consumed per processed sample, measured in **Joules per sample (J/sample)**:
+To resolve this, `moniaenergy` defines the **Intensity Factor** as the average energy consumed per processed sample, measured in **Joules per sample (J/sample)**:
 
 $$
 \text{Intensity Factor} = \frac{\text{Total Energy (J)}}{\text{Total Samples Processed}}

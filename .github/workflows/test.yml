@@ -65,12 +65,12 @@ jobs:
       - name: Run tests
         run: |
           pytest tests/ -v --tb=short \
-            --cov=src/monitor_app \
+            --cov=src/moniaenergy \
             --cov-report=term-missing
         continue-on-error: true
       
       - name: Test import
-        run: python -c "from monitor_app import monitor_train; print('✓ Import successful')"
+        run: python -c "from moniaenergy import monitor_train; print('✓ Import successful')"
 
   type-check:
     name: Type Check (mypy)
@@ -94,7 +94,7 @@ jobs:
           pip install mypy pandas numpy torch
       
       - name: Type check with mypy
-        run: mypy src/monitor_app --ignore-missing-imports --show-error-codes || true
+        run: mypy src/moniaenergy --ignore-missing-imports --show-error-codes || true
         continue-on-error: true
 
   build:
@@ -149,5 +149,5 @@ jobs:
       
       - name: Security scan with Bandit
         run: |
-          bandit -r src/monitor_app -ll || true
+          bandit -r src/moniaenergy -ll || true
         continue-on-error: true

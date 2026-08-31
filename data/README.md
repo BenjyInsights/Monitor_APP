@@ -1,4 +1,4 @@
-# Data Organization — monitor_app v1.0
+# Data Organization — monIAenergy v1.0
 
 This directory structure organizes raw monitoring logs and processed metrics for reproducibility.
 

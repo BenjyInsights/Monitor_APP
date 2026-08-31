@@ -1,4 +1,4 @@
-# Development and testing dependencies for monitor_app
+# Development and testing dependencies for moniaenergy
 # Extends requirements-core.txt
 
 -r requirements-core.txt

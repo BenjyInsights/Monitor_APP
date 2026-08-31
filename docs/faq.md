@@ -7,10 +7,10 @@
 ```bash
 sudo chmod a+r /sys/class/powercap/intel-rapl/intel-rapl:0/energy_uj
 ```
-If you do not have root access, `monitor_app` will fallback gracefully to estimating CPU consumption using TDP thermal limits.
+If you do not have root access, `moniaenergy` will fallback gracefully to estimating CPU consumption using TDP thermal limits.
 
 ### Q: Why is the GPU power optimizer in "ADVISOR-ONLY" mode?
-**A:** Changing the GPU power limit (`nvmlDeviceSetPowerManagementLimit`) requires elevated privileges (`sudo` / root). If you run your script without root, `monitor_app` degrades gracefully to advisor mode: it constructs the Pareto frontier and outputs suggestions to the terminal without altering hardware limits. To run in ACTIVE mode, execute your training script with `sudo`:
+**A:** Changing the GPU power limit (`nvmlDeviceSetPowerManagementLimit`) requires elevated privileges (`sudo` / root). If you run your script without root, `moniaenergy` degrades gracefully to advisor mode: it constructs the Pareto frontier and outputs suggestions to the terminal without altering hardware limits. To run in ACTIVE mode, execute your training script with `sudo`:
 ```bash
 sudo env PATH=$PATH python train.py
 ```
@@ -26,9 +26,9 @@ pip install nvidia-ml-py pynvml
 ## Unit Testing & Mocking Issues
 
 ### Q: Why do I see failures in `TestCarbonEmissionsExternalAPI` when running pytest?
-**A:** The tests fail with `AttributeError: module 'monitor_app.utils.carbon_emissions' has no attribute 'urllib'`. This is a mocking bug in the test suite. 
+**A:** The tests fail with `AttributeError: module 'moniaenergy.utils.carbon_emissions' has no attribute 'urllib'`. This is a mocking bug in the test suite. 
 
-The test tries to patch `monitor_app.utils.carbon_emissions.urllib.request.urlopen`. However, in `carbon_emissions.py`, `urllib` is imported inside the local function body rather than at the module level:
+The test tries to patch `moniaenergy.utils.carbon_emissions.urllib.request.urlopen`. However, in `carbon_emissions.py`, `urllib` is imported inside the local function body rather than at the module level:
 ```python
 # In carbon_emissions.py:
 def _query_electricity_maps_api(cls, country: str):
@@ -36,7 +36,7 @@ def _query_electricity_maps_api(cls, country: str):
     import urllib.request
     import urllib.error
 ```
-**Fix:** To resolve this, you can edit `tests/test_carbon_emissions.py` to patch the global `urllib.request.urlopen` instead, or add `import urllib.request` at the top of `src/monitor_app/utils/carbon_emissions.py`.
+**Fix:** To resolve this, you can edit `tests/test_carbon_emissions.py` to patch the global `urllib.request.urlopen` instead, or add `import urllib.request` at the top of `src/moniaenergy/utils/carbon_emissions.py`.
 
 ### Q: Why does `TestIntelCpuMonitor::test_read_metrics` fail?
 **A:** The test fails with `AssertionError: unexpectedly None` because the mock file reader `side_effect` is exhausted. 

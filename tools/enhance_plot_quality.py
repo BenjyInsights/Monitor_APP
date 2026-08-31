@@ -137,7 +137,7 @@ class PublicationPlotter:
         if ax:
             ax.text(
                 0.98, 0.02,
-                "© 2026 monitor_app",
+                "© 2026 moniaenergy",
                 transform=ax.transAxes,
                 fontsize=7,
                 alpha=alpha,

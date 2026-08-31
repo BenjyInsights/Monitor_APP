@@ -1,4 +1,4 @@
-# GPU/CUDA dependencies for monitor_app
+# GPU/CUDA dependencies for moniaenergy
 # Extends requirements-core.txt
 # Pin your CUDA version as needed: cu121 (v12.1), cu124 (v12.4), etc.
 

@@ -2,14 +2,14 @@
 
 For deep architectural optimization, knowing the total energy consumption of a model is not enough. You need to know which layers are the energy "hotspots."
 
-`monitor_app` includes the **`LayerEnergyProfiler`**, which registers PyTorch forward and backward hooks to attribute CPU and GPU power consumption to individual layers.
+`moniaenergy` includes the **`LayerEnergyProfiler`**, which registers PyTorch forward and backward hooks to attribute CPU and GPU power consumption to individual layers.
 
 ## Registering the Profiler
 
 To profile individual layers, instantiate the `LayerEnergyProfiler` and wrap your training step:
 
 ```python
-from monitor_app.monitor.pytorch_hooks import LayerEnergyProfiler
+from monIAenergy.monitor.pytorch_hooks import LayerEnergyProfiler
 import torch
 
 model = MyModel()

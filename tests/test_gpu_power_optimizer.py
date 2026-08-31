@@ -26,7 +26,7 @@ advisor-only mode without requiring actual GPU hardware (pynvml is mocked).
 import unittest
 from unittest.mock import patch, MagicMock
 
-from monitor_app.monitor.gpu_power_optimizer import GpuPowerOptimizer, _ProbeResult
+from moniaenergy.monitor.gpu_power_optimizer import GpuPowerOptimizer, _ProbeResult
 
 
 class TestParetoSelection(unittest.TestCase):
@@ -34,7 +34,7 @@ class TestParetoSelection(unittest.TestCase):
 
     def _make_optimizer(self) -> GpuPowerOptimizer:
         """Create a GpuPowerOptimizer in a testable state (no NVML)."""
-        with patch("monitor_app.monitor.gpu_power_optimizer._NVML_AVAILABLE", False):
+        with patch("moniaenergy.monitor.gpu_power_optimizer._NVML_AVAILABLE", False):
             opt = GpuPowerOptimizer(gpu_index=0)
         opt.mode = "advisor-only"
         opt.power_caps_w = [180, 210, 240, 270, 300]
@@ -168,20 +168,20 @@ class TestOptimizerModes(unittest.TestCase):
 
     def test_unavailable_without_nvml(self) -> None:
         """Without pynvml, optimizer should be in 'unavailable' mode."""
-        with patch("monitor_app.monitor.gpu_power_optimizer._NVML_AVAILABLE", False):
+        with patch("moniaenergy.monitor.gpu_power_optimizer._NVML_AVAILABLE", False):
             opt = GpuPowerOptimizer(gpu_index=0)
         self.assertEqual(opt.mode, "unavailable")
 
     def test_on_epoch_end_returns_false_when_unavailable(self) -> None:
         """on_epoch_end should return False when mode is unavailable."""
-        with patch("monitor_app.monitor.gpu_power_optimizer._NVML_AVAILABLE", False):
+        with patch("moniaenergy.monitor.gpu_power_optimizer._NVML_AVAILABLE", False):
             opt = GpuPowerOptimizer(gpu_index=0)
         result = opt.on_epoch_end(j_sample=0.05, epoch_time_s=50.0, epoch=0)
         self.assertFalse(result)
 
     def test_restore_does_not_crash_without_handle(self) -> None:
         """restore() should be safe to call when no NVML handle exists."""
-        with patch("monitor_app.monitor.gpu_power_optimizer._NVML_AVAILABLE", False):
+        with patch("moniaenergy.monitor.gpu_power_optimizer._NVML_AVAILABLE", False):
             opt = GpuPowerOptimizer(gpu_index=0)
         opt.restore()  # Should not raise
 

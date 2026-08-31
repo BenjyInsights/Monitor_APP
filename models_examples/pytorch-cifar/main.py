@@ -17,12 +17,12 @@ from datetime import datetime
 # ── Path setup ───────────────────────────────────────────────────────────────
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.abspath(os.path.join(_THIS_DIR, "..", ".."))
-sys.path.insert(0, os.path.join(_PROJECT_ROOT, "src"))  # monitor_app
+sys.path.insert(0, os.path.join(_PROJECT_ROOT, "src"))  # moniaenergy
 sys.path.insert(0, _THIS_DIR)                        # models, utils
 
 from models import *  # requires models/ folder from pytorch-cifar repo
 from utils import progress_bar
-from monitor_app import monitor_train, LayerEnergyProfiler, compute_energy_metrics, TrainingDisplay
+from moniaenergy import monitor_train, LayerEnergyProfiler, compute_energy_metrics, TrainingDisplay
 
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')

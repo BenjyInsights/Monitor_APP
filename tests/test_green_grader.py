@@ -26,7 +26,7 @@ covering grade assignment, edge cases, accuracy normalisation, and calibration.
 import unittest
 import math
 
-from monitor_app.metrics.green_grader import compute_grade, calibrate_reference
+from moniaenergy.metrics.green_grader import compute_grade, calibrate_reference
 
 
 class TestComputeGrade(unittest.TestCase):

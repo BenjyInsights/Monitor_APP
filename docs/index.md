@@ -1,10 +1,10 @@
 # Home
 
-Welcome to **monitor_app** ⚡🌍 — a high-fidelity energy monitoring framework for Python & PyTorch.
+Welcome to **monIAenergy** ⚡🌍 — a high-fidelity energy monitoring framework for Python & PyTorch.
 
-## What is monitor_app?
+## What is monIAenergy?
 
-`monitor_app` measures with precision the energy consumption (CPU + GPU), carbon footprint by country, and training efficiency of AI models in Python. It's designed to:
+`moniaenergy` measures with precision the energy consumption (CPU + GPU), carbon footprint by country, and training efficiency of AI models in Python. It's designed to:
 
 - **Measure accurately** — *"How much energy does my model really consume?"*
 - **Grade automatically** — Classify efficiency as **A++, A+, A, B, C, D, E, F** (like appliance energy labels)
@@ -38,7 +38,7 @@ Welcome to **monitor_app** ⚡🌍 — a high-fidelity energy monitoring framewo
 ## Quick Example
 
 ```python
-from monitor_app import monitor_train
+from monIAenergy import monitor_train
 
 with monitor_train(
     model=my_model,
@@ -83,19 +83,19 @@ with monitor_train(
 
 ## Getting Started
 
-- **[Installation](getting-started/installation.md)** — Set up monitor_app in 5 minutes
+- **[Installation](getting-started/installation.md)** — Set up moniaenergy in 5 minutes
 - **[Quick Start](getting-started/quickstart.md)** — First energy monitoring run
 - **[Reproducibility Guide](getting-started/reproducibility.md)** — Replicate the published benchmarks step-by-step
 
 ## Documentation
 
-- **[API Reference](api/monitor_app.md)** — Full class and function documentation
+- **[API Reference](api/moniaenergy.md)** — Full class and function documentation
 - **[Concepts](concepts/energy-grading.md)** — Deep dive into energy grading and optimization theories
 - **[Examples](examples/training.md)** — Real-world usage patterns
 
 ## Citation
 
-If you use `monitor_app` in your research, please cite:
+If you use `moniaenergy` in your research, please cite:
 
 ```bibtex
 @thesis{SanchezCalza2026,
@@ -108,7 +108,7 @@ If you use `monitor_app` in your research, please cite:
 
 ## License
 
-`monitor_app` is licensed under the **GNU General Public License v3.0**. See [LICENSE](LICENSE.md) for details.
+`moniaenergy` is licensed under the **GNU General Public License v3.0**. See [LICENSE](LICENSE.md) for details.
 
 ---
 

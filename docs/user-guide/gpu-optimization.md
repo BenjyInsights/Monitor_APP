@@ -2,14 +2,14 @@
 
 NVIDIA GPUs are designed to boost clock frequencies as high as thermal and power envelopes permit. However, due to the non-linear relationship between clock frequency and power consumption, the highest power limit is rarely the most energy-efficient.
 
-Inspired by the [Zeus framework](https://ml.energy/zeus), `monitor_app` includes the **`GpuPowerOptimizer`**, which dynamically adjusts the GPU power limit (capping) to find the optimal trade-off on the energy-accuracy Pareto frontier.
+Inspired by the [Zeus framework](https://ml.energy/zeus), `moniaenergy` includes the **`GpuPowerOptimizer`**, which dynamically adjusts the GPU power limit (capping) to find the optimal trade-off on the energy-accuracy Pareto frontier.
 
 ## Operating Modes
 
 1. **ACTIVE Mode (requires `sudo` / root privileges)**:
    The framework directly communicates with the hardware using NVIDIA's NVML library (`nvmlDeviceSetPowerManagementLimit`). It caps the maximum power draw at the start of each epoch and restores the original threshold upon termination.
 2. **ADVISOR-ONLY Mode (no root privileges)**:
-   If `monitor_app` is executed without root privileges, it **does not crash**. Instead, it simulates the optimization sweeps, constructs the Pareto frontier, and prints recommendations to the terminal so that you can manually configure the power limit or request administrator intervention.
+   If `moniaenergy` is executed without root privileges, it **does not crash**. Instead, it simulates the optimization sweeps, constructs the Pareto frontier, and prints recommendations to the terminal so that you can manually configure the power limit or request administrator intervention.
 
 ## Configuration
 

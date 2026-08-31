@@ -14,7 +14,7 @@ import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 
-from monitor_app import monitor_train
+from monIAenergy import monitor_train
 
 # 1. Prepare Data
 transform = transforms.Compose([

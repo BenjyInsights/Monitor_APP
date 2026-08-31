@@ -1,4 +1,4 @@
-# Core dependencies for monitor_app
+# Core dependencies for moniaenergy
 # Python >= 3.11
 # Full documentation: see requirements-core.txt, requirements-gpu.txt, requirements-dev.txt
 

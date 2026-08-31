@@ -2,7 +2,7 @@
 
 Training deep learning models has a geographical environmental impact. The carbon footprint of an experiment is determined not only by how much energy is consumed, but also by **where** that energy is drawn from.
 
-`monitor_app` calculates CO₂ equivalent emissions in real-time by integrating local energy readings with global electricity grid carbon intensity factors.
+`moniaenergy` calculates CO₂ equivalent emissions in real-time by integrating local energy readings with global electricity grid carbon intensity factors.
 
 ## The Carbon Formula
 
@@ -20,7 +20,7 @@ Where:
 
 The carbon intensity of electricity grid mixes varies by region, depending on the share of fossil fuels (coal, gas) vs low-carbon sources (nuclear, hydro, wind, solar).
 
-`monitor_app` embeds the **Ember 2025 dataset** containing provisional country-level emission factors and legacy 2022 continent averages:
+`moniaenergy` embeds the **Ember 2025 dataset** containing provisional country-level emission factors and legacy 2022 continent averages:
 
 | Region | Grid Mix Characteristics | Intensity Factor (gCO₂/kWh) |
 |--------|--------------------------|-----------------------------|

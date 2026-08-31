@@ -53,7 +53,7 @@ In the thesis context, *"Frontera de Pareto"* refers specifically to the energy-
 
 Translation: "GPU power limiting ... reduces consumption by 20–40% by exploring the energy-accuracy Pareto frontier."
 
-## Practical Use in monitor_app
+## Practical Use in moniaenergy
 
 When `power_optimize=True` is enabled:
 

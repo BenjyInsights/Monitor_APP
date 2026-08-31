@@ -1,13 +1,13 @@
 # API_REFERENCE.md — Technical Documentation v1.0
 
-> **monitor_app v1.0.0 — High-Fidelity Energy Monitoring Framework for AI Training**  
+> **monIAenergy v1.0.0 — High-Fidelity Energy Monitoring Framework for AI Training**  
 > **Benjamín Sánchez Calza · v1.0.0 · 2026 · GPL-3.0**
 
 ---
 
 ## Overview
 
-This document provides comprehensive technical reference for the four core classes of `monitor_app`:
+This document provides comprehensive technical reference for the four core classes of `moniaenergy`:
 
 1. **`monitor_train()`** — High-level context manager for complete monitoring
 2. **`GpuPowerOptimizer`** — Pareto frontier exploration and GPU power limiting (Zeus-style)
@@ -21,7 +21,7 @@ This document provides comprehensive technical reference for the four core class
 ### Synopsis
 
 ```python
-from monitor_app import monitor_train
+from monIAenergy import monitor_train
 
 with monitor_train(
     model,
@@ -111,7 +111,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, models, transforms
-from monitor_app import monitor_train
+from moniaenergy import monitor_train
 
 # Data loading
 transform = transforms.Compose([
@@ -213,7 +213,7 @@ with monitor_train(
 The **GPU Power Optimizer** automatically seeks the **Pareto Frontier** (optimal trade-off between energy and time) by dynamically adjusting GPU power limits.
 
 ```python
-from monitor_app import GpuPowerOptimizer
+from moniaenergy import GpuPowerOptimizer
 
 optimizer = GpuPowerOptimizer(
     gpu_index=0,
@@ -266,7 +266,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, models, transforms
-from monitor_app import GpuPowerOptimizer, EpochTracker, compute_energy_metrics
+from moniaenergy import GpuPowerOptimizer, EpochTracker, compute_energy_metrics
 
 # Setup
 device = torch.device('cuda:0')
@@ -385,7 +385,7 @@ Epoch 4: Testing cap=108W  (40%)  — Time=62.8s, Energy=235.0J  [ΔT=+38.9%, Δ
 Automatically halts training when per-sample **Energy Intensity Factor** (J/sample) efficiency decays below a threshold.
 
 ```python
-from monitor_app import EnergyEarlyStopping
+from moniaenergy import EnergyEarlyStopping
 
 ees = EnergyEarlyStopping(
     log_file_path="logs/run.ndjson",
@@ -433,7 +433,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, DistributedSampler
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torchvision import datasets, models, transforms
-from monitor_app import (
+from moniaenergy import (
     EpochTracker,
     EnergyEarlyStopping,
     compute_energy_metrics,
@@ -552,7 +552,7 @@ def train_with_ees(local_rank, world_size):
 Measures forward-pass compute time per layer and enables energy attribution by layer.
 
 ```python
-from monitor_app import LayerEnergyProfiler
+from moniaenergy import LayerEnergyProfiler
 
 profiler = LayerEnergyProfiler(model, device="cuda")
 
@@ -600,7 +600,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, models, transforms
-from monitor_app import (
+from moniaenergy import (
     LayerEnergyProfiler,
     MonitorContext,
     EpochTracker,
@@ -726,9 +726,9 @@ pip install pynvml  # May be needed alternatively
 
 ## References
 
-- **GitHub:** https://github.com/BenjyInsights/Monitor_APP
-- **Documentation:** https://monitor-app.readthedocs.io
-- **Trabajo original:** Sánchez Calza, B. «monitor_app: Framework para Monitorización Energética de IA» (2026)
+- **GitHub:** https://github.com/BenjyInsights/monIAenergy
+- **Documentation:** https://moniaenergy.readthedocs.io
+- **Trabajo original:** Sánchez Calza, B. «moniaenergy: Framework para Monitorización Energética de IA» (2026)
 - **Zeus Framework:** ML.Energy Initiative, University of Michigan
 - **Carbon Intensity Data:** Ember 2025 Dataset
 

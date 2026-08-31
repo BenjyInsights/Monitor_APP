@@ -52,7 +52,7 @@ This avoids:
 
 ## Reference Calibration
 
-The reference score (B grade threshold) is auto-calibrated from your benchmark dataset. monitor_app:
+The reference score (B grade threshold) is auto-calibrated from your benchmark dataset. monIAenergy:
 
 1. Computes scores for all runs in your logs/
 2. Selects the median as the reference

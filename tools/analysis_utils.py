@@ -28,7 +28,7 @@ from scipy import stats
 
 # El grader del framework es la única fuente de verdad para la escala A++–F.
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-from monitor_app.metrics.green_grader import compute_grade, calibrate_reference  # noqa: E402
+from moniaenergy.metrics.green_grader import compute_grade, calibrate_reference  # noqa: E402
 
 # ============================================================================
 # CONFIGURACIÓN CENTRALIZADA DE RUTAS
@@ -44,13 +44,13 @@ OUTPUT_CSV = BASE_DIR / "results" / "csv"
 """Directorio de salida para tablas CSV."""
 
 OUTPUT_PLOTS = Path(
-    os.environ.get("MONITOR_APP_FIGURES_DIR", BASE_DIR / "results" / "figuras")
+    os.environ.get("MONIAENERGY_FIGURES_DIR", BASE_DIR / "results" / "figuras")
 )
 """Directorio de salida para gráficas PDF.
 
 Por defecto ``results/figuras``. Se puede redirigir a la carpeta de figuras de
 una memoria LaTeX externa mediante la variable de entorno
-``MONITOR_APP_FIGURES_DIR``.
+``MONIAENERGY_FIGURES_DIR``.
 """
 
 OUTPUT_METADATA = BASE_DIR / "results" / "metadata"
@@ -296,7 +296,7 @@ def load_benchmark_data():
         raise ValueError("El archivo JSON no contiene datos válidos.")
     
     # --- CÁLCULO POST-HOC DEL GREEN AI GRADE ---
-    # Se delega en el propio módulo del framework (monitor_app.metrics.green_grader)
+    # Se delega en el propio módulo del framework (moniaenergy.metrics.green_grader)
     # en lugar de reimplementar la escala aquí: así la columna "Grade" de la memoria
     # usa exactamente los umbrales documentados en la Sección "Green AI Grade" y
     # cualquier cambio en el módulo se propaga al análisis sin divergencias.

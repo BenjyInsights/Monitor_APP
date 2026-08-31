@@ -11,8 +11,8 @@
 ### 1. Clone and Navigate
 
 ```bash
-git clone https://github.com/BenjyInsights/monitor_app.git
-cd monitor_app
+git clone https://github.com/BenjyInsights/monIAenergy.git
+cd monIAenergy
 ```
 
 ### 2. Create Virtual Environment (Recommended)
@@ -23,8 +23,8 @@ python3.11 -m venv venv
 source venv/bin/activate
 
 # Or using conda
-conda create -n monitor_app python=3.11
-conda activate monitor_app
+conda create -n monIAenergy python=3.11
+conda activate monIAenergy
 ```
 
 ### 3. Install Core Package
@@ -64,7 +64,7 @@ pip install -e [gpu]
 # CUDA 12.4
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
-# Then install monitor_app
+# Then install monIAenergy
 pip install -e .
 ```
 
@@ -118,10 +118,10 @@ mkdocs serve
 
 ```bash
 # Check import
-python -c "from monitor_app import monitor_train; print('✓ monitor_app imported successfully')"
+python -c "from monIAenergy import monitor_train; print('✓ monIAenergy imported successfully')"
 
 # Check CLI
-monitor_app --help
+monIAenergy --help
 ```
 
 ## Troubleshooting

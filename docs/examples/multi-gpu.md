@@ -1,13 +1,13 @@
 # Example: Multi-GPU Setups
 
-When working in environments with multiple GPUs (e.g., SLURM clusters or multi-socket workstations), you need to ensure `monitor_app` tracks and optimizes the correct hardware device.
+When working in environments with multiple GPUs (e.g., SLURM clusters or multi-socket workstations), you need to ensure `moniaenergy` tracks and optimizes the correct hardware device.
 
 ## Selecting a Specific GPU
 
-By default, `monitor_app` queries NVML for GPU `0`. In multi-GPU rigs, pass the target GPU index using the `gpu_index` parameter:
+By default, `moniaenergy` queries NVML for GPU `0`. In multi-GPU rigs, pass the target GPU index using the `gpu_index` parameter:
 
 ```python
-from monitor_app import monitor_train
+from monIAenergy import monitor_train
 
 with monitor_train(
     model=model,
@@ -33,7 +33,7 @@ DDP spawns a separate Python process per GPU.
 - **Example Pattern**:
 ```python
 import os
-from monitor_app import monitor_train
+from moniaenergy import monitor_train
 
 local_rank = int(os.environ.get("LOCAL_RANK", 0))
 

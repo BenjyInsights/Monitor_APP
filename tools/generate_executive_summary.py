@@ -142,7 +142,7 @@ class ExecutiveSummaryGenerator:
         md = []
         md.append("# Executive Summary — Energy Efficiency Benchmark Report\n")
         md.append(f"> **Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-        md.append(f"> **Framework:** monitor_app v0.5.1\n")
+        md.append(f"> **Framework:** moniaenergy v0.5.1\n")
         md.append(f"> **Dataset:** {self.benchmark_path.name}\n\n")
 
         # Project Info

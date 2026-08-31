@@ -1,6 +1,6 @@
 # API Reference — Complete Class Documentation
 
-> **Auto-generated reference for monitor_app v0.5.1**  
+> **Auto-generated reference for monIAenergy v0.5.1**  
 > Last updated: 2026-04-16
 
 ---
@@ -19,12 +19,12 @@
 
 ### `monitor_train()` — Context Manager
 
-**Module:** `monitor_app.facade`
+**Module:** `moniaenergy.facade`
 
 **Purpose:** Single-entry point for all monitoring, optimization, and grading features.
 
 ```python
-from monitor_app import monitor_train
+from monIAenergy import monitor_train
 
 with monitor_train(
     model=my_model,
@@ -126,12 +126,12 @@ for epoch in range(num_epochs):
 
 ### `MonitorContext` — Low-Level Hardware Monitor
 
-**Module:** `monitor_app.monitor.inline_monitor`
+**Module:** `moniaenergy.monitor.inline_monitor`
 
 A context manager for raw system monitoring (CPU, GPU, memory, temperature).
 
 ```python
-from monitor_app import MonitorContext
+from moniaenergy import MonitorContext
 
 with MonitorContext(
     context="training phase",
@@ -156,12 +156,12 @@ with MonitorContext(
 
 ### `EpochTracker` — Epoch Event Logging
 
-**Module:** `monitor_app.monitor.pytorch_hooks`
+**Module:** `moniaenergy.monitor.pytorch_hooks`
 
 Records epoch boundaries (start/end) to a sidecar NDJSON file for energy attribution.
 
 ```python
-from monitor_app import EpochTracker
+from moniaenergy import EpochTracker
 
 tracker = EpochTracker(log_file_path="logs/training.ndjson")
 
@@ -204,12 +204,12 @@ Record the end of epoch N with optional metrics. Writes JSON line:
 
 ### `LayerEnergyProfiler` — Per-Layer Timing
 
-**Module:** `monitor_app.monitor.pytorch_hooks`
+**Module:** `moniaenergy.monitor.pytorch_hooks`
 
 Measures forward-pass compute time per layer using PyTorch hooks.
 
 ```python
-from monitor_app import LayerEnergyProfiler
+from moniaenergy import LayerEnergyProfiler
 
 profiler = LayerEnergyProfiler(model, device="cuda")
 
@@ -256,12 +256,12 @@ Unregister all hooks. Call at the end of profiling.
 
 ### `EnergyEarlyStopping` — Automatic Training Termination
 
-**Module:** `monitor_app.monitor.pytorch_hooks`
+**Module:** `moniaenergy.monitor.pytorch_hooks`
 
 Stops training when per-sample energy efficiency falls below a threshold.
 
 ```python
-from monitor_app import EnergyEarlyStopping
+from moniaenergy import EnergyEarlyStopping
 
 ees = EnergyEarlyStopping(
     log_file_path="logs/resnet50/run_XXX.ndjson",
@@ -310,14 +310,14 @@ Evaluate EES criterion. Call after `EpochTracker.on_epoch_end()`.
 
 ### `GpuPowerOptimizer` — Pareto-Optimal Power Limiting
 
-**Module:** `monitor_app.monitor.gpu_power_optimizer`
+**Module:** `moniaenergy.monitor.gpu_power_optimizer`
 
 Automatically adjusts GPU power cap (W) to explore the Pareto frontier of energy vs. accuracy.
 
 **Algorithm:** Two-phase Explore → Exploit using NVIDIA RAPL.
 
 ```python
-from monitor_app import GpuPowerOptimizer
+from moniaenergy import GpuPowerOptimizer
 
 optimizer = GpuPowerOptimizer(
     gpu_index=0,
@@ -397,13 +397,13 @@ GPU Power Optimization (Epoch 3):
 
 ### `OptimizerAdvisor` — Real-Time Suggestions
 
-**Module:** `monitor_app.monitor.optimizer_advisor`
+**Module:** `moniaenergy.monitor.optimizer_advisor`
 
 Emits per-epoch optimization suggestions based on energy trends.
 
 ```python
-from monitor_app import OptimizerAdvisor
-from monitor_app import compute_energy_metrics
+from moniaenergy import OptimizerAdvisor
+from moniaenergy import compute_energy_metrics
 
 advisor = OptimizerAdvisor(
     batch_size=128,
@@ -450,12 +450,12 @@ reducir consumo ~25%.
 
 ### `compute_grade()` — Energy Efficiency Letter Grade
 
-**Module:** `monitor_app.metrics.green_grader`
+**Module:** `moniaenergy.metrics.green_grader`
 
 Compute the Universal Energy Grade (A++–F) for a configuration.
 
 ```python
-from monitor_app import compute_grade
+from moniaenergy import compute_grade
 
 result = compute_grade(
     accuracy=0.95,           # 95% accuracy
@@ -495,12 +495,12 @@ $$\text{Grade Score} = \frac{\text{Accuracy} \times \log_{10}(\text{Parameters})
 
 ### `calibrate_reference()` — Auto-Calibrate Thresholds
 
-**Module:** `monitor_app.metrics.green_grader`
+**Module:** `moniaenergy.metrics.green_grader`
 
 Auto-calibrate reference score (B grade threshold) from a log directory.
 
 ```python
-from monitor_app import calibrate_reference
+from moniaenergy import calibrate_reference
 
 reference, percentiles = calibrate_reference(
     log_dir="logs/",
@@ -517,12 +517,12 @@ print(f"Percentiles: {percentiles}")
 
 ### `compute_energy_metrics()` — Per-Epoch Energy Summary
 
-**Module:** `monitor_app.monitor.pytorch_hooks`
+**Module:** `moniaenergy.monitor.pytorch_hooks`
 
 Compute per-epoch energy, carbon, and efficiency metrics from monitoring logs.
 
 ```python
-from monitor_app import compute_energy_metrics
+from moniaenergy import compute_energy_metrics
 
 energy_df = compute_energy_metrics(
     log_file_path="logs/resnet50/run_20260416_102030.ndjson",
@@ -604,10 +604,10 @@ epoch,timestamp_start,timestamp_end,duration_s,samples,energy_j,cpu_energy_j,gpu
 
 ```python
 # High-level API
-from monitor_app import monitor_train
+from moniaenergy import monitor_train
 
 # Core classes
-from monitor_app import (
+from moniaenergy import (
     MonitorContext,
     EpochTracker,
     LayerEnergyProfiler,
@@ -617,7 +617,7 @@ from monitor_app import (
 )
 
 # Metrics
-from monitor_app import (
+from moniaenergy import (
     compute_grade,
     compute_energy_metrics,
     calibrate_reference,
@@ -625,7 +625,7 @@ from monitor_app import (
 )
 
 # Rich terminal display (optional)
-from monitor_app import TrainingDisplay
+from moniaenergy import TrainingDisplay
 ```
 
 ---

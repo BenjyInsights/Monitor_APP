@@ -27,7 +27,7 @@ import unittest
 from unittest.mock import patch, MagicMock
 import pandas as pd
 
-from monitor_app.monitor.pytorch_hooks import EnergyEarlyStopping
+from moniaenergy.monitor.pytorch_hooks import EnergyEarlyStopping
 
 
 def _mock_energy_df(epoch: int, energy_j: float) -> pd.DataFrame:
@@ -52,7 +52,7 @@ class TestEnergyEarlyStopping(unittest.TestCase):
             patience=patience,
         )
 
-    @patch("monitor_app.monitor.pytorch_hooks.compute_energy_metrics")
+    @patch("moniaenergy.monitor.pytorch_hooks.compute_energy_metrics")
     def test_does_not_stop_first_epoch(self, mock_cem: MagicMock) -> None:
         """First epoch should never trigger stopping (no previous accuracy)."""
         ees = self._make_ees()
@@ -60,7 +60,7 @@ class TestEnergyEarlyStopping(unittest.TestCase):
         result = ees.step(epoch=0, accuracy=0.50)
         self.assertFalse(result)
 
-    @patch("monitor_app.monitor.pytorch_hooks.compute_energy_metrics")
+    @patch("moniaenergy.monitor.pytorch_hooks.compute_energy_metrics")
     def test_does_not_stop_with_good_efficiency(self, mock_cem: MagicMock) -> None:
         """Efficient epochs should not trigger stopping."""
         ees = self._make_ees(patience=3)
@@ -74,7 +74,7 @@ class TestEnergyEarlyStopping(unittest.TestCase):
         result = ees.step(epoch=1, accuracy=0.70)
         self.assertFalse(result)
 
-    @patch("monitor_app.monitor.pytorch_hooks.compute_energy_metrics")
+    @patch("moniaenergy.monitor.pytorch_hooks.compute_energy_metrics")
     def test_auto_calibrates_threshold(self, mock_cem: MagicMock) -> None:
         """Threshold should be auto-calibrated from the first productive epoch."""
         ees = self._make_ees(ratio=0.05)
@@ -93,7 +93,7 @@ class TestEnergyEarlyStopping(unittest.TestCase):
         expected_eff = (0.60 - 0.40) / 5000.0
         self.assertAlmostEqual(ees._min_efficiency, 0.05 * expected_eff, places=10)
 
-    @patch("monitor_app.monitor.pytorch_hooks.compute_energy_metrics")
+    @patch("moniaenergy.monitor.pytorch_hooks.compute_energy_metrics")
     def test_stops_after_patience_exhausted(self, mock_cem: MagicMock) -> None:
         """Should stop after `patience` consecutive inefficient epochs."""
         ees = self._make_ees(patience=2)
@@ -116,7 +116,7 @@ class TestEnergyEarlyStopping(unittest.TestCase):
         result = ees.step(epoch=3, accuracy=0.6002)
         self.assertTrue(result)  # patience exhausted: 2/2
 
-    @patch("monitor_app.monitor.pytorch_hooks.compute_energy_metrics")
+    @patch("moniaenergy.monitor.pytorch_hooks.compute_energy_metrics")
     def test_resets_patience_on_efficient_epoch(self, mock_cem: MagicMock) -> None:
         """An efficient epoch should reset the bad_epochs counter."""
         ees = self._make_ees(patience=3)
@@ -139,7 +139,7 @@ class TestEnergyEarlyStopping(unittest.TestCase):
         ees.step(epoch=3, accuracy=0.80)
         self.assertEqual(ees._bad_epochs, 0)
 
-    @patch("monitor_app.monitor.pytorch_hooks.compute_energy_metrics")
+    @patch("moniaenergy.monitor.pytorch_hooks.compute_energy_metrics")
     def test_returns_false_on_empty_df(self, mock_cem: MagicMock) -> None:
         """Empty DataFrame from compute_energy_metrics should return False."""
         ees = self._make_ees()
@@ -147,7 +147,7 @@ class TestEnergyEarlyStopping(unittest.TestCase):
         result = ees.step(epoch=0, accuracy=0.50)
         self.assertFalse(result)
 
-    @patch("monitor_app.monitor.pytorch_hooks.compute_energy_metrics")
+    @patch("moniaenergy.monitor.pytorch_hooks.compute_energy_metrics")
     def test_explicit_threshold_skips_calibration(self, mock_cem: MagicMock) -> None:
         """When min_efficiency is set explicitly, auto-calibration should be skipped."""
         ees = EnergyEarlyStopping(

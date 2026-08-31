@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Thank you for your interest in contributing to **monitor_app**! As an open-source project, we welcome contributions that improve hardware support, accuracy calibration, active optimization, or documentation.
+Thank you for your interest in contributing to **monIAenergy**! As an open-source project, we welcome contributions that improve hardware support, accuracy calibration, active optimization, or documentation.
 
 ## Development Setup
 
@@ -8,8 +8,8 @@ To set up a local development environment:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/BenjyInsights/monitor_app.git
-   cd monitor_app
+   git clone https://github.com/BenjyInsights/monIAenergy.git
+   cd monIAenergy
    ```
 
 2. **Create a virtual environment**:

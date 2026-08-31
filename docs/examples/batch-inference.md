@@ -9,7 +9,7 @@ Save this script as `benchmark_inference.py`:
 ```python
 import torch
 import torchvision.models as models
-from monitor_app.monitor.inline_monitor import MonitorContext
+from monIAenergy.monitor.inline_monitor import MonitorContext
 
 # Load model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

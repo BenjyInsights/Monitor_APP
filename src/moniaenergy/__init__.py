@@ -1,0 +1,39 @@
+# moniaenergy/__init__.py #
+# src/moniaenergy/__init__.py
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# Copyright (C) 2026  Benjamín Sánchez Calza
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+from .monitor.inline_monitor import inline_monitor, MonitorContext
+from .monitor.pytorch_hooks import EpochTracker, LayerEnergyProfiler, compute_energy_metrics, EnergyEarlyStopping
+from .monitor.optimizer_advisor import OptimizerAdvisor
+from .monitor.gpu_power_optimizer import GpuPowerOptimizer
+from .display.rich_display import TrainingDisplay
+from .metrics.green_grader import compute_grade, calibrate_reference, GradeResult
+from .facade import monitor_train
+
+__all__ = [
+    "inline_monitor", "MonitorContext",
+    "EpochTracker", "LayerEnergyProfiler", "compute_energy_metrics", "EnergyEarlyStopping",
+    "OptimizerAdvisor", "GpuPowerOptimizer",
+    "TrainingDisplay",
+    "compute_grade", "calibrate_reference", "GradeResult",
+    "monitor_train",
+]
+
+def __dir__():
+    return __all__

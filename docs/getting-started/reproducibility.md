@@ -1,6 +1,6 @@
 # Reproducibility Guide
 
-> **Goal:** Replicate exactly the published benchmark results using `monitor_app`.
+> **Goal:** Replicate exactly the published benchmark results using `moniaenergy`.
 
 ## Prerequisites
 
@@ -14,8 +14,8 @@
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/BenjyInsights/monitor_app.git
-cd monitor_app
+git clone https://github.com/BenjyInsights/monIAenergy.git
+cd monIAenergy
 
 # Create virtual environment
 python3.11 -m venv venv
@@ -52,7 +52,7 @@ from torchvision import transforms, datasets
 from torch.utils.data import DataLoader
 import torch.nn as nn
 
-from monitor_app import monitor_train
+from monIAenergy import monitor_train
 
 # Load data
 transform = transforms.Compose([

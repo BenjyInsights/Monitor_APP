@@ -1,6 +1,6 @@
 # License
 
-`monitor_app` is open-source software, licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
+`moniaenergy` is open-source software, licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
 
 The full license text is available in the root of the project directory in the [LICENSE](../LICENSE) file.
 

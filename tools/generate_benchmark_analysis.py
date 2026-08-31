@@ -29,7 +29,7 @@ DATOS DE ENTRADA:
 
 SALIDA:
   - results/csv/         (10 tablas CSV de análisis)
-  - results/figuras/     (9 gráficas PDF; redirigible con MONITOR_APP_FIGURES_DIR)
+  - results/figuras/     (9 gráficas PDF; redirigible con MONIAENERGY_FIGURES_DIR)
   - results/metadata/    (metadatos reproducibles)
 
 CORRECCIONES v2 (2026-04-14):
@@ -527,7 +527,7 @@ def generate_tabla_metadata():
             'Factores de emisión IEA 2023 para 16 ubicaciones geográficas',
             'NVIDIA RTX 6000 Ada (48 GB VRAM) — vía pynvml',
             'Intel Xeon (compatible RAPL) — vía /sys/class/powercap/',
-            'Framework monitor_app — medición y optimización energética',
+            'Framework moniaenergy — medición y optimización energética',
         ]
     }
 

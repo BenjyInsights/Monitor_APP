@@ -1,13 +1,13 @@
 # Basic Usage Guide
 
-This guide describes how to configure `monitor_app` for standard runs and discusses the impact of hyperparameter choices (such as batch size) on energy efficiency.
+This guide describes how to configure `moniaenergy` for standard runs and discusses the impact of hyperparameter choices (such as batch size) on energy efficiency.
 
 ## Integrating monitor_train
 
 The standard entry point to instrument your PyTorch training loop is `monitor_train`. The context manager configures hardware monitors, enables tracking hooks, and logs statistics automatically.
 
 ```python
-from monitor_app import monitor_train
+from monIAenergy import monitor_train
 import torch
 
 # Define model, optimizer, loss function, and dataloader

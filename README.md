@@ -1,4 +1,4 @@
-# monitor_app ⚡
+# monIAenergy ⚡
 
 **Medición real de energía y huella de carbono para entrenamiento de modelos en Python y PyTorch.**
 
@@ -12,11 +12,11 @@ el consumo a partir de fichas técnicas, con una incertidumbre declarada del 15�
 suele ser mayor que el ahorro que se pretende atribuir a una optimización, lo que invalida la
 comparación.
 
-`monitor_app` **mide**: lee los contadores de potencia integrados en el propio silicio —Intel RAPL
+`moniaenergy` **mide**: lee los contadores de potencia integrados en el propio silicio —Intel RAPL
 para CPU y NVIDIA NVML para GPU— con una precisión de ±5 %, desagrega el consumo por época, por
 capa y por muestra, y actúa sobre el hardware para reducirlo.
 
-| | Estimación paramétrica | `monitor_app` |
+| | Estimación paramétrica | `moniaenergy` |
 |:---|:---|:---|
 | Mecanismo | Ficha técnica × utilización | Contadores de hardware |
 | Incertidumbre | ±15–30 % | ±5 % |
@@ -58,8 +58,8 @@ Requiere Python 3.11 o superior sobre Linux. La dependencia de Linux viene del a
 contadores RAPL a través de `/sys/class/powercap/`.
 
 ```bash
-git clone https://github.com/BenjyInsights/Monitor_APP.git
-cd Monitor_APP
+git clone https://github.com/BenjyInsights/monIAenergy.git
+cd monIAenergy
 
 pip install -e .              # base: medición de CPU
 pip install -e ".[gpu]"       # añade pynvml y soporte de GPU NVIDIA
@@ -93,7 +93,7 @@ sudo chmod a+r /sys/class/powercap/intel-rapl/intel-rapl:0/energy_uj
 calificación energética y asesor de optimización.
 
 ```python
-from monitor_app import monitor_train
+from monIAenergy import monitor_train
 
 with monitor_train(
     model,                   # torch.nn.Module (autodetecta el nº de parámetros)
@@ -133,7 +133,7 @@ Al cerrar el contexto se emite el informe final:
 Cuando se necesita control directo sobre cada pieza:
 
 ```python
-from monitor_app import (
+from moniaenergy import (
     MonitorContext, EpochTracker, EnergyEarlyStopping,
     LayerEnergyProfiler, compute_energy_metrics,
 )
@@ -167,7 +167,7 @@ energy_df = compute_energy_metrics("logs/run_001.ndjson")
 Para medir una función concreta sin envolver un bucle completo:
 
 ```python
-from monitor_app import inline_monitor
+from moniaenergy import inline_monitor
 
 @inline_monitor(context="Inferencia", interval=1, log_file_path="logs/infer")
 def run_inference(model, data):
@@ -270,9 +270,9 @@ sesión** y fuera del panel principal, sin interrumpir el entrenamiento.
 ### Comparación con Zeus
 
 [Zeus](https://ml.energy/zeus) (ML.Energy Initiative, University of Michigan) es el referente en
-optimización activa de potencia. `monitor_app` adopta su actuador —NVML— pero no su política:
+optimización activa de potencia. `moniaenergy` adopta su actuador —NVML— pero no su política:
 
-| Aspecto | `monitor_app` | Zeus |
+| Aspecto | `moniaenergy` | Zeus |
 |:---|:---|:---|
 | Algoritmo | Barrido explícito con selección de Pareto | Bandidos multibrazo (ε-greedy) |
 | Convergencia | Una sola ejecución | Varias ejecuciones del mismo trabajo |
@@ -473,7 +473,7 @@ partir de los registros publicados y lanzar los dos últimos pasos.
 ### Estructura del proyecto
 
 ```
-src/monitor_app/
+src/moniaenergy/
 ├── facade.py                  # monitor_train — integración en una línea
 ├── monitor/
 │   ├── inline_monitor.py      # decorador y gestor de contexto

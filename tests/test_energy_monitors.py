@@ -28,14 +28,14 @@ import unittest
 from unittest.mock import Mock, MagicMock, patch, mock_open
 import time
 
-from monitor_app.monitor.base_energy_monitor import (
+from moniaenergy.monitor.base_energy_monitor import (
     BaseEnergyMonitor,
     EnergyReading,
     MonitorMode,
     MonitorError,
 )
-from monitor_app.monitor.nvidia_gpu_monitor import NvidiaGpuMonitor
-from monitor_app.monitor.intel_cpu_monitor import IntelCpuMonitor
+from moniaenergy.monitor.nvidia_gpu_monitor import NvidiaGpuMonitor
+from moniaenergy.monitor.intel_cpu_monitor import IntelCpuMonitor
 
 
 class TestBaseEnergyMonitor(unittest.TestCase):
@@ -102,8 +102,8 @@ class TestBaseEnergyMonitor(unittest.TestCase):
 class TestNvidiaGpuMonitor(unittest.TestCase):
     """Test NvidiaGpuMonitor with mocked NVML."""
 
-    @patch("monitor_app.monitor.nvidia_gpu_monitor.pynvml")
-    @patch("monitor_app.monitor.nvidia_gpu_monitor._PYNVML_AVAILABLE", True)
+    @patch("moniaenergy.monitor.nvidia_gpu_monitor.pynvml")
+    @patch("moniaenergy.monitor.nvidia_gpu_monitor._PYNVML_AVAILABLE", True)
     def test_initialization_active_mode(self, mock_pynvml: Mock) -> None:
         """Test successful GPU monitor initialization in ACTIVE mode."""
         # Setup mocks
@@ -122,8 +122,8 @@ class TestNvidiaGpuMonitor(unittest.TestCase):
         self.assertEqual(monitor.mode, MonitorMode.ACTIVE)
         mock_pynvml.nvmlInit.assert_called_once()
 
-    @patch("monitor_app.monitor.nvidia_gpu_monitor.pynvml")
-    @patch("monitor_app.monitor.nvidia_gpu_monitor._PYNVML_AVAILABLE", True)
+    @patch("moniaenergy.monitor.nvidia_gpu_monitor.pynvml")
+    @patch("moniaenergy.monitor.nvidia_gpu_monitor._PYNVML_AVAILABLE", True)
     def test_initialization_read_only_mode(self, mock_pynvml: Mock) -> None:
         """Test initialization in READ_ONLY mode (no write permission)."""
         mock_handle = MagicMock()
@@ -140,8 +140,8 @@ class TestNvidiaGpuMonitor(unittest.TestCase):
         self.assertTrue(monitor.is_initialized)
         self.assertEqual(monitor.mode, MonitorMode.READ_ONLY)
 
-    @patch("monitor_app.monitor.nvidia_gpu_monitor.pynvml")
-    @patch("monitor_app.monitor.nvidia_gpu_monitor._PYNVML_AVAILABLE", True)
+    @patch("moniaenergy.monitor.nvidia_gpu_monitor.pynvml")
+    @patch("moniaenergy.monitor.nvidia_gpu_monitor._PYNVML_AVAILABLE", True)
     def test_read_metrics(self, mock_pynvml: Mock) -> None:
         """Test reading GPU metrics."""
         mock_handle = MagicMock()
@@ -173,8 +173,8 @@ class TestNvidiaGpuMonitor(unittest.TestCase):
         self.assertIn("frequency_mhz", reading.metadata)
         self.assertEqual(reading.metadata["frequency_mhz"], 1980)
 
-    @patch("monitor_app.monitor.nvidia_gpu_monitor.pynvml")
-    @patch("monitor_app.monitor.nvidia_gpu_monitor._PYNVML_AVAILABLE", True)
+    @patch("moniaenergy.monitor.nvidia_gpu_monitor.pynvml")
+    @patch("moniaenergy.monitor.nvidia_gpu_monitor._PYNVML_AVAILABLE", True)
     def test_set_power_limit_active_mode(self, mock_pynvml: Mock) -> None:
         """Test setting power limit in ACTIVE mode."""
         mock_handle = MagicMock()

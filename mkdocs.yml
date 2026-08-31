@@ -1,10 +1,10 @@
-site_name: monitor_app
+site_name: moniaenergy
 site_description: High-fidelity energy monitoring framework for Python & PyTorch
 site_author: Benjamín Sánchez Calza
-site_url: https://github.com/yourusername/monitor_app
+site_url: https://github.com/yourusername/moniaenergy
 
-repo_name: monitor_app
-repo_url: https://github.com/yourusername/monitor_app
+repo_name: moniaenergy
+repo_url: https://github.com/yourusername/moniaenergy
 copyright: 'Copyright &copy; 2026 Benjamín Sánchez Calza. Licensed under GPL-3.0.'
 
 theme:
@@ -65,7 +65,7 @@ nav:
     - Carbon Emissions: concepts/carbon-emissions.md
     - Intensity Factor: concepts/intensity-factor.md
   - API Reference:
-    - monitor_app: api/monitor_app.md
+    - moniaenergy: api/moniaenergy.md
     - Core Classes: api/core.md
     - Metrics: api/metrics.md
     - Utilities: api/utils.md
