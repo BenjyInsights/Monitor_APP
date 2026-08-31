@@ -43,6 +43,8 @@ parser.add_argument('--patience',             default=3,    type=int,   help='co
 parser.add_argument('--resume', '-r',   action='store_true',       help='resume from checkpoint')
 parser.add_argument('--display',        action='store_true',       help='rich live terminal dashboard (disables progress_bar)')
 parser.add_argument('--rep',            default=1,    type=int,   help='repetition index (for statistical replication; encoded in run_name)')
+parser.add_argument('--log-dir',        default=None, type=str,
+                    help='directorio raiz de registros (por defecto <repo>/logs)')
 parser.add_argument('--quiet',          action='store_true',       help='suppress per-batch progress bar (clean logs for unattended runs)')
 args = parser.parse_args()
 
@@ -225,7 +227,7 @@ try:
     with monitor_train(
         model=net,
         run_name=f"CIFAR10_{args.model}_{_device_tag}_bs{args.batch_size}{_prec_tag}_{_mode_tag}_rep{args.rep}",
-        log_dir=os.path.join(_PROJECT_ROOT, "logs"),
+        log_dir=(args.log_dir or os.path.join(_PROJECT_ROOT, "logs")),
         power_optimize=args.power_optimize,
         time_budget_pct=args.time_budget,
         early_stopping=args.early_stopping,

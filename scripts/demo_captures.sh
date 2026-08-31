@@ -73,7 +73,13 @@ echo "  Intérprete: $PYTHON_CMD"
 export PYTHONPATH="${PROJECT_ROOT}/src:${PYTHONPATH:-}"
 cd "$CIFAR_DIR"
 
-DEVICE="${DEVICE:-cuda:0}"
+DEVICE="${DEVICE:-cuda:1}"
+
+# Las demostraciones escriben en su propio directorio de registros. El nombre de
+# ejecucion se deriva del modelo, el lote y el modo, de manera que reutilizar el
+# directorio del banco de pruebas haria que una demostracion intentara escribir
+# sobre registros ya archivados.
+LOG_DIR="${LOG_DIR:-${PROJECT_ROOT}/logs/demo}"
 
 # -----------------------------------------------------------------------------
 # 1 — Panel de telemetría en tiempo real
@@ -94,7 +100,8 @@ run_demo1() {
         --fp16 \
         --early-stopping \
         --display \
-        --device      "$DEVICE"
+        --device      "$DEVICE" \
+        --log-dir     "$LOG_DIR"
 }
 
 # -----------------------------------------------------------------------------
@@ -114,7 +121,8 @@ run_demo2() {
         --model       MobileNetV2 \
         --epochs      5 \
         --batch-size  32 \
-        --device      "$DEVICE"
+        --device      "$DEVICE" \
+        --log-dir     "$LOG_DIR"
 }
 
 # -----------------------------------------------------------------------------
@@ -146,7 +154,8 @@ run_demo3() {
         --fp16 \
         --power-optimize \
         --time-budget    0.10 \
-        --device         "$DEVICE"
+        --device         "$DEVICE" \
+        --log-dir        "$LOG_DIR"
 }
 
 case "${1:-help}" in
