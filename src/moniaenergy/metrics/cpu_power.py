@@ -93,7 +93,7 @@ class CPUPackagePowerMetric(BaseMetric):
             if not CPUPackagePowerMetric._rapl_warned:
                 CPUPackagePowerMetric._rapl_warned = True
                 print(
-                    f"[moniaenergy] Warning: no permission to read {path}. "
+                    f"[monIAenergy] Warning: no permission to read {path}. "
                     "CPU energy will be reported as unavailable; GPU metrics are "
                     "unaffected. To enable CPU measurement run with sudo or "
                     f"grant read access (sudo chmod a+r {path}).",

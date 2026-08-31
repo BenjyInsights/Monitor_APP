@@ -222,7 +222,7 @@ class TrainingDisplay:
     def _header(self) -> Panel:
         prec = "FP16" if self._fp16 else "FP32"
         markup = (
-            f"[bold cyan]moniaenergy[/bold cyan]  "
+            f"[bold cyan]monIAenergy[/bold cyan]  "
             f"[bold white]{self._model_name}[/bold white]"
             f"  [dim]│[/dim]  "
             f"Epoch [yellow]{self._epoch}[/yellow] / [yellow]{self._total_epochs}[/yellow]"
